@@ -19,16 +19,11 @@ const MainSearch = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const jobData = await fetchJobs(dispatch, query)
+    dispatch(fetchJobs(query))
     dispatch(setSearchQuery(query))
-    dispatch(setSearchResults(jobData))
   }
 
-  useEffect(() => {
-    if (searchQuery) {
-      fetchJobs(dispatch, searchQuery)
-    }
-  }, [searchQuery])
+  console.log('MainSearch - jobs', jobs)
 
   return (
     <Container>

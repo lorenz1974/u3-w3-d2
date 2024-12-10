@@ -20,23 +20,24 @@ const searchReducers = (state = initialState, action) => {
                 ...state,
                 searchResults: action.payload,
             };
+
         case GET_SEARCH:
             return {
                 ...state,
                 searchResults: action.payload,
             };
+
         case SET_SEARCH_ERROR:
             return {
                 ...state,
                 isError: action.payload,
             };
+
         case SET_SEARCH_LOADING:
             return {
                 ...state,
                 isLoading: action.payload,
             };
-
-
 
         default:
             return state;
