@@ -36,7 +36,6 @@ const Job = ({ data }) => {
           {data.title}
         </div>
         <Collapse in={open}>
-          {/* Render HTML dinamico, fai attenzione a non avere contenuti pericolosi */}
           <div dangerouslySetInnerHTML={{ __html: data.description }} />
         </Collapse>
       </Col>

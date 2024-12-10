@@ -1,10 +1,11 @@
-import { SET_SEARCH_QUERY, SET_SEARCH_RESULTS, GET_SEARCH, SET_SEARCH_ERROR, SET_SEARCH_LOADING } from "../actions";
+import { SET_SEARCH_QUERY, SET_SEARCH_RESULTS, GET_SEARCH, SET_SEARCH_ERROR, SET_ERROR_MESSAGE, SET_SEARCH_LOADING } from "../actions";
 
 const initialState = {
     searchQuery: '',
     searchResults: [],
     isLoading: true,
     isError: false,
+    errorMessage: '',
 };
 
 const searchReducers = (state = initialState, action) => {
@@ -31,6 +32,12 @@ const searchReducers = (state = initialState, action) => {
             return {
                 ...state,
                 isError: action.payload,
+            };
+
+        case SET_ERROR_MESSAGE:
+            return {
+                ...state,
+                errorMessage: action.payload,
             };
 
         case SET_SEARCH_LOADING:

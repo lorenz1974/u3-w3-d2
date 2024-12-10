@@ -18,7 +18,6 @@ const MainSearch = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
     dispatch(fetchJobs(query))
     dispatch(setSearchQuery(query))
   }

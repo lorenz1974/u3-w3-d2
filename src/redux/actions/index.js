@@ -2,6 +2,7 @@ export const SET_SEARCH_QUERY = 'SET_SEARCH_QUERY'
 export const SET_SEARCH_RESULTS = 'SET_SEARCH_RESULTS'
 export const GET_SEARCH = 'GET_SEARCH'
 export const SET_SEARCH_ERROR = 'SET_SEARCH_ERROR'
+export const SET_ERROR_MESSAGE = 'SET_ERROR_MESSAGE'
 export const SET_SEARCH_LOADING = 'SET_SEARCH_LOADING'
 export const MANAGE_FAVOURITES = 'MANAGE_FAVOURITES'
 
@@ -40,6 +41,12 @@ export const setSearchError = (error) => {
     }
 }
 
+export const setErrorMessage = (errorMessage) => {
+    return {
+        type: SET_ERROR_MESSAGE,
+        payload: errorMessage,
+    }
+}
 export const fetchJobs = (query) => {
     return async (dispatch) => {
         const baseEndpoint = 'https://strive-benchmark.herokuapp.com/api/jobs?search='
@@ -51,11 +58,12 @@ export const fetchJobs = (query) => {
                 dispatch(setSearchResults(data))
                 dispatch(setSearchLoading(false))
             } else {
-                alert('Error fetching results')
+                throw new Error('Error fetching jobs data')
             }
         } catch (error) {
             console.error('Fetch error:', error)
             dispatch(setSearchError(true))
+            dispatch(setErrorMessage(error.message))
         }
     }
 }
